@@ -1,10 +1,10 @@
 import os
 from datetime import datetime as dt
 
-from toolbox_runner.parameter import parse_parameter
+from json2args import get_parameter
 
 # parse parameters
-kwargs = parse_parameter()
+kwargs = get_parameter()
 
 # check if a toolname was set in env
 toolname = os.environ.get('TOOL_RUN', 'foobar').lower()
