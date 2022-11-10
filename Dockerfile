@@ -2,7 +2,7 @@
 FROM python:3.10
 
 # install the toolbox runner tools
-RUN pip install toolbox-runner
+RUN pip install json2args
 
 
 # Do anything you need to install tool dependencies here
