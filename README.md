@@ -45,7 +45,7 @@ in the repository secrets in order to run properly.
 
 ## How to run?
 
-This template installs the toolbox-runner python package to parse the parameters in the `/in/parameters.json`. This assumes that
+This template installs the json2args python package to parse the parameters in the `/in/parameters.json`. This assumes that
 the files are not renamed and not moved and there is actually only one tool in the container. For any other case, the environment variables
 `PARAM_FILE` can be used to specify a new location for the `parameters.json` and `TOOL_RUN` can be used to specify the tool to be executed.
 The `run.py` has to take care of that.
