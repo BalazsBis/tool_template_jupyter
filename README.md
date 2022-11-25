@@ -1,5 +1,7 @@
 # tool_template_python
 
+[![DOI](https://zenodo.org/badge/558416591.svg)](https://zenodo.org/badge/latestdoi/558416591)
+
 This is the template for a generic containerized Python tool. This template can be used to generate new Github repositories from it.
 
 ## How generic?
