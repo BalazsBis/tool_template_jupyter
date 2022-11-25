@@ -8,8 +8,9 @@ Tools using this template can be run by the [toolbox-runner](https://github.com/
 That is only convenience, the tools implemented using this template are independent of any framework.
 
 The main idea is to implement a common file structure inside container to load inputs and outputs of the 
-tool. The template shares this structures with the [R template](https://github.com/vforwater/tool_template_r)
-and [Octave template](https://github.com/vforwater/tool_template_octave), but can be mimiced in any container.
+tool. The template shares this structures with the [R template](https://github.com/vforwater/tool_template_r),
+[NodeJS template](https://github.com/vforwater/tool_template_node) and [Octave template](https://github.com/vforwater/tool_template_octave), 
+but can be mimiced in any container.
 
 Each container needs at least the following structure:
 
@@ -39,9 +40,7 @@ Use any tag you like. If you want to run and manage the container with [toolbox-
 they should be prefixed by `tbr_` to be recognized. 
 
 Alternatively, the contained `.github/workflows/docker-image.yml` will build the image for you 
-on new releases on Github. You need to change the target repository in the aforementioned yaml and the repository needs a 
-[personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-in the repository secrets in order to run properly.
+on new releases on Github. You need to change the target repository in the aforementioned yaml.
 
 ## How to run?
 
@@ -57,7 +56,7 @@ docker run --rm -it -v /path/to/local/in:/in -v /path/to/local/out:/out -e TOOL_
 
 Then, the output will be in your local out and based on your local input folder. Stdout and Stderr are also connected to the host.
 
-With the toolbox runner, this is simplyfied:
+With the [toolbox runner](https://github.com/hydrocode-de/tool-runner), this is simplyfied:
 
 ```python
 from toolbox_runner import list_tools
