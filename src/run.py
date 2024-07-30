@@ -3,9 +3,11 @@ from datetime import datetime as dt
 from pprint import pprint
 
 from json2args import get_parameter
+from json2args.data import get_data
 
 # parse parameters
 kwargs = get_parameter()
+data = get_data(as_dict=True)
 
 # check if a toolname was set in env
 toolname = os.environ.get('TOOL_RUN', 'foobar').lower()
@@ -17,6 +19,11 @@ if toolname == 'foobar':
     
     # write parameters to STDOUT.log
     pprint(kwargs)
+
+    for name, ds in data.items():
+        print(f"\n### {name}")
+        print(ds)
+    
 
 # In any other case, it was not clear which tool to run
 else:
