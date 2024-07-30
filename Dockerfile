@@ -1,5 +1,5 @@
 # Pull any base image that includes python3
-FROM python:3.10
+FROM python:3.12
 
 # install the toolbox runner tools
 RUN pip install json2args
