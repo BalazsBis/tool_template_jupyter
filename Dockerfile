@@ -2,12 +2,16 @@
 FROM python:3.12
 
 # install the toolbox runner tools
-RUN pip install "json2args[data]>=0.6.2"
+# for jupyter notebooks we need jupyter itself and papermill to execute them
+RUN pip install \
+    "json2args[data]>=0.7.0" \
+    jupyter==1.1.1 \ 
+    papermill==2.6.0
 
 # if you do not need data-preloading as your tool does that on its own
 # you can use this instread of the line above to use a json2args version
 # with less dependencies
-# RUN pip install json2args>=0.6.2
+# RUN pip install json2args>=0.7.0
 
 # Do anything you need to install tool dependencies here
 RUN echo "Replace this line with a tool"
@@ -23,4 +27,9 @@ COPY ./src /src
 COPY ./CITATION.cf[f] /src/CITATION.cff
 
 WORKDIR /src
-CMD ["python", "run.py"]
+
+# Use this for the finished too
+#CMD ["papermill", "run.ipynb", "/out/run.ipynb"]
+
+# use this command for development
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
