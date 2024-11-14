@@ -1,30 +1,42 @@
 import os
+import sys
 from datetime import datetime as dt
-from pprint import pprint
+from pathlib import Path
+import papermill as pm
 
 from json2args import get_parameter
-from json2args.data import get_data
+from json2args.data import get_data_paths
+from json2args.logger import logger
+import logging
 
 # parse parameters
 kwargs = get_parameter()
-data = get_data(as_dict=True)
+data = get_data_paths()
 
 # check if a toolname was set in env
 toolname = os.environ.get('TOOL_RUN', 'foobar').lower()
+logger.info(f"##Tool Start - {toolname}")
 
-# switch the tool
-if toolname == 'foobar':
-    # RUN the tool here and create the output in /out
-    print('This toolbox does not include any tool. Did you run the template?\n')
-    
-    # write parameters to STDOUT.log
-    pprint(kwargs)
+# make sure that a jupyter notebook named like the tool is available.
+# the file extension is optional
+tool_notebook = Path(f"/src/{toolname.replace('.ipynb', '')}.ipynb")
+if not tool_notebook.exists():
+    logger.error(f"[{dt.now().isocalendar()}] No notebook found for tool '{toolname}'. Following the config, I expect a notebook called {tool_notebook} inside the container.\n")
+    sys.exit(1)
 
-    for name, ds in data.items():
-        print(f"\n### {name}")
-        print(ds)
-    
+# before running the notebook, we overwrite the papermill logger with the json2args logger
+pm_logger = logging.getLogger('papermill')
+pm_logger.setLevel(getattr(logging, os.environ.get('LOG_LEVEL', 'DEBUG')))
+pm_logger.handlers = logger.handlers
 
-# In any other case, it was not clear which tool to run
-else:
-    raise AttributeError(f"[{dt.now().isocalendar()}] Either no TOOL_RUN environment variable available, or '{toolname}' is not valid.\n")
+# run the notebook.
+# the output is written to /out
+# the kwargs and data are passed as parameters to the notebook
+pm.execute_notebook(
+    tool_notebook,
+    Path("/out") / tool_notebook.name,
+    parameters={**kwargs, **data},
+    log_output=True,
+)
+
+logger.info(f"##Tool Start - {toolname}")
