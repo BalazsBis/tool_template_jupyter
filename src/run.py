@@ -26,7 +26,7 @@ if not tool_notebook.exists():
 
 # before running the notebook, we overwrite the papermill logger with the json2args logger
 pm_logger = logging.getLogger('papermill')
-pm_logger.setLevel(getattr(logging, os.environ.get('LOG_LEVEL', 'DEBUG')))
+pm_logger.setLevel(getattr(logging, os.environ.get('LOG_LEVEL', 'INFO')))
 pm_logger.handlers = logger.handlers
 
 # run the notebook.
