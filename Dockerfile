@@ -29,7 +29,7 @@ COPY ./CITATION.cf[f] /src/CITATION.cff
 WORKDIR /src
 
 # Use this for the finished too
-#CMD ["papermill", "run.ipynb", "/out/run.ipynb"]
+CMD ["python", "run.py"]
 
 # use this command for development
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
+#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]

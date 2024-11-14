@@ -1,5 +1,5 @@
 services:
-  jupyter-template:
+  foobar:
     build: .
     volumes:
       - ./in:/in
@@ -10,5 +10,7 @@ services:
     #  - 8888:8888
     # command: ["jupyter", "notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root"]
     # production
-    command: ["papermill",  "/src/run.ipynb",  "/out/run.ipynb"]
+    environment:
+      TOOL_RUN: foobar
+    command: ["python",  "run.py"]
     
