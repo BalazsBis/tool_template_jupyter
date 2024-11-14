@@ -39,4 +39,4 @@ pm.execute_notebook(
     log_output=True,
 )
 
-logger.info(f"##Tool Start - {toolname}")
+logger.info(f"##Tool Finish - {toolname}")
