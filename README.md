@@ -1,7 +1,7 @@
 # tool_template_jupyter
 
-[![Docker Image CI](https://github.com/VForWaTer/tool_template_python/actions/workflows/docker-image.yml/badge.svg)](https://github.com/VForWaTer/tool_template_python/actions/workflows/docker-image.yml)
-[![DOI](https://zenodo.org/badge/558416591.svg)](https://zenodo.org/badge/latestdoi/558416591)
+[![Docker Image CI](https://github.com/VForWaTer/tool_template_jupyter/actions/workflows/docker-image.yml/badge.svg)](https://github.com/VForWaTer/tool_template_jupyter/actions/workflows/docker-image.yml)
+[![DOI](https://zenodo.org/badge/887771303.svg)](https://doi.org/10.5281/zenodo.14166903)
 
 This is the template for a generic containerized Jupyter notebook tool following the [Tool Specification](https://vforwater.github.io/tool-specs/) for reusable research software using Docker.
 
